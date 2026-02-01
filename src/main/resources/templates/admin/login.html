@@ -1,85 +1,65 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Login - Hotel ALAKAMANDAWA</title>
-    <link rel="stylesheet" th:href="@{/css/login.css}" />
-  </head>
-  <body>
-    <div class="login-container">
-      <div class="login-card">
-        <div class="login-header">
-          <h1>Hotel ALAKAMANDAWA</h1>
-          <p style="color: #666; font-size: 18px">Admin Login</p>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login - Hotel ALAKAMANDAWA</title>
+  <link rel="stylesheet" th:href="@{/css/login.css}" />
+</head>
+
+<body>
+  <div class="login-container">
+    <div class="login-card">
+      <div class="login-header">
+        <h1>Hotel ALAKAMANDAWA</h1>
+        <p style="color: #666; font-size: 18px">Admin Login</p>
+      </div>
+
+      <div th:if="${error}" class="alert alert-error" th:text="${error}">
+        Invalid username or password
+      </div>
+
+      <form action="/admin/login" method="post">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" class="form-control" placeholder="Enter username" required
+            autofocus />
         </div>
 
-        <div th:if="${error}" class="alert alert-error" th:text="${error}">
-          Invalid username or password
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" class="form-control" placeholder="Enter password"
+            required />
         </div>
 
-        <form action="/admin/login" method="post">
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              class="form-control"
-              placeholder="Enter username"
-              required
-              autofocus
-            />
-          </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px">
+          Login
+        </button>
+      </form>
 
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              class="form-control"
-              placeholder="Enter password"
-              required
-            />
-          </div>
-
-          <button
-            type="submit"
-            class="btn btn-primary"
-            style="width: 100%; margin-top: 10px"
-          >
-            Login
-          </button>
-        </form>
-
-        <div
-          style="
+      <div style="
             text-align: center;
             margin-top: 20px;
             padding-top: 20px;
             border-top: 1px solid #e0e0e0;
-          "
-        >
-          <a href="/" style="color: #667eea; text-decoration: none"
-            >← Back to Home</a
-          >
-        </div>
+          ">
+        <a href="/" style="color: #667eea; text-decoration: none">← Back to Home</a>
+      </div>
 
-        <div
-          style="
+      <div style="
             background: #e3f2fd;
             padding: 15px;
             border-radius: 8px;
             margin-top: 20px;
             font-size: 14px;
-          "
-        >
-          <strong>Demo Credentials:</strong><br />
-          Username: admin<br />
-          Password: admin123
-        </div>
+          ">
+        <strong>Demo Credentials:</strong><br />
+        Username: admin<br />
+        Password: admin123
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

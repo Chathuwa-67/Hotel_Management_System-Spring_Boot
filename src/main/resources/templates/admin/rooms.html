@@ -1,93 +1,85 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Manage Rooms - Hotel ALAKAMANDAWA Admin</title>
-    <link rel="stylesheet" th:href="@{/css/admin-rooms.css}" />
-  </head>
-  <body>
-    <header class="header">
-      <div class="header-inner">
-        <a href="/admin/dashboard" class="logo">Hotel ALAKAMANDAWA Admin</a>
-        <nav class="nav">
-          <a href="/admin/dashboard" class="nav-link">Dashboard</a>
-          <a href="/admin/rooms" class="nav-link active">Rooms</a>
-          <a href="/admin/bookings" class="nav-link">Bookings</a>
-          <a href="/admin/guests" class="nav-link">Guests</a>
-          <a href="/admin/logout" class="nav-btn">Logout</a>
-        </nav>
-      </div>
-    </header>
 
-    <main class="container">
-      <div class="page-heading">
-        <div>
-          <p class="eyebrow">Inventory</p>
-          <h1>Room Management</h1>
-          <p class="muted">View, add, edit, and remove rooms.</p>
-        </div>
-        <a href="/admin/rooms/add" class="btn primary">➕ Add New Room</a>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Rooms - Hotel ALAKAMANDAWA Admin</title>
+  <link rel="stylesheet" th:href="@{/css/admin-rooms.css}" />
+</head>
 
-      <section class="card">
-        <div class="table-wrapper">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Room Number</th>
-                <th>Type</th>
-                <th>Floor</th>
-                <th>Capacity</th>
-                <th>Price/Night (LKR)</th>
-                <th>Status</th>
-                <th style="width: 150px">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr th:each="room : ${rooms}">
-                <td th:text="${room.roomNumber}">101</td>
-                <td th:text="${room.roomType}">Deluxe</td>
-                <td th:text="${room.floor}">1</td>
-                <td th:text="${room.capacity}">2</td>
-                <td
-                  th:text="${#numbers.formatDecimal(room.pricePerNight, 1, 2)}"
-                >
-                  15,000.00
-                </td>
-                <td>
-                  <span
-                    class="status-badge"
-                    th:classappend="${room.status == 'Available'} ? 'status-available' : 'status-booked'"
-                    th:text="${room.status}"
-                  >
-                    Available
-                  </span>
-                </td>
-                <td>
-                  <div class="action-buttons">
-                    <a
-                      th:href="@{/admin/rooms/edit/{id}(id=${room.id})}"
-                      class="action-btn btn-outline"
-                      >Edit</a
-                    >
-                    <a
-                      th:href="@{/admin/rooms/delete/{id}(id=${room.id})}"
-                      class="action-btn btn-danger"
-                      onclick="return confirm('Are you sure you want to delete this room?')"
-                    >
-                      Delete
-                    </a>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div th:if="${#lists.isEmpty(rooms)}" class="empty">
-            <p>No rooms found. Click "Add New Room" to create one.</p>
-          </div>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="/admin/dashboard" class="logo">Hotel ALAKAMANDAWA Admin</a>
+      <nav class="nav">
+        <a href="/admin/dashboard" class="nav-link">Dashboard</a>
+        <a href="/admin/rooms" class="nav-link active">Rooms</a>
+        <a href="/admin/bookings" class="nav-link">Bookings</a>
+        <a href="/admin/guests" class="nav-link">Guests</a>
+        <a href="/admin/logout" class="nav-btn">Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-heading">
+      <div>
+        <p class="eyebrow">Inventory</p>
+        <h1>Room Management</h1>
+        <p class="muted">View, add, edit, and remove rooms.</p>
+      </div>
+      <a href="/admin/rooms/add" class="btn primary">➕ Add New Room</a>
+    </div>
+
+    <section class="card">
+      <div class="table-wrapper">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Room Number</th>
+              <th>Type</th>
+              <th>Floor</th>
+              <th>Capacity</th>
+              <th>Price/Night (LKR)</th>
+              <th>Status</th>
+              <th style="width: 150px">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="room : ${rooms}">
+              <td th:text="${room.roomNumber}">101</td>
+              <td th:text="${room.roomType}">Deluxe</td>
+              <td th:text="${room.floor}">1</td>
+              <td th:text="${room.capacity}">2</td>
+              <td th:text="${#numbers.formatDecimal(room.pricePerNight, 1, 2)}">
+                15,000.00
+              </td>
+              <td>
+                <span class="status-badge"
+                  th:classappend="${room.status == 'Available'} ? 'status-available' : 'status-booked'"
+                  th:text="${room.status}">
+                  Available
+                </span>
+              </td>
+              <td>
+                <div class="action-buttons">
+                  <a th:href="@{/admin/rooms/edit/{id}(id=${room.id})}" class="action-btn btn-outline">Edit</a>
+                  <a th:href="@{/admin/rooms/delete/{id}(id=${room.id})}" class="action-btn btn-danger"
+                    onclick="return confirm('Are you sure you want to delete this room?')">
+                    Delete
+                  </a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div th:if="${#lists.isEmpty(rooms)}" class="empty">
+          <p>No rooms found. Click "Add New Room" to create one.</p>
         </div>
-      </section>
-    </main>
-  </body>
+      </div>
+    </section>
+  </main>
+</body>
+
 </html>

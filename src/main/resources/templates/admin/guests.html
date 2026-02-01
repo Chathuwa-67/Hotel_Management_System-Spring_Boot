@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Guests - Hotel ALAKAMANDAWA Admin</title>
     <link rel="stylesheet" th:href="@{/css/admin-guests.css}">
 </head>
+
 <body>
     <header class="header">
         <div class="header-inner">
@@ -51,10 +53,11 @@
                             <td th:text="${guest.address}">Colombo</td>
                             <td>
                                 <div class="action-buttons">
-                                    <a th:href="@{/admin/guests/history/{id}(id=${guest.id})}" class="action-btn btn-outline">View History</a>
+                                    <a th:href="@{/admin/guests/history/{id}(id=${guest.id})}"
+                                        class="action-btn btn-outline">View History</a>
                                     <a th:href="@{/admin/guests/delete/{id}(id=${guest.id})}"
-                                       class="action-btn btn-danger"
-                                       onclick="return confirm('Are you sure you want to delete this guest? This will also delete all their bookings!')">
+                                        class="action-btn btn-danger"
+                                        onclick="return confirm('Are you sure you want to delete this guest? This will also delete all their bookings!')">
                                         Delete
                                     </a>
                                 </div>
@@ -70,4 +73,5 @@
         </section>
     </main>
 </body>
+
 </html>

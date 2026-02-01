@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manage Bookings - Hotel ALAKAMANDAWA Admin</title>
   <link rel="stylesheet" th:href="@{/css/admin-bookings.css}">
 </head>
+
 <body>
   <header class="header">
     <div class="header-inner">
@@ -55,23 +57,20 @@
               <td th:text="${booking.numberOfGuests}">2</td>
               <td th:text="${#numbers.formatDecimal(booking.totalPrice, 1, 2)}">60,000.00</td>
               <td>
-                <span class="status-badge"
-                      th:classappend="${booking.status == 'Confirmed'} ? 'status-confirmed' :
+                <span class="status-badge" th:classappend="${booking.status == 'Confirmed'} ? 'status-confirmed' :
                                       (${booking.status == 'Cancelled'} ? 'status-cancelled' : 'status-pending')"
-                      th:text="${booking.status}">
+                  th:text="${booking.status}">
                   Confirmed
                 </span>
               </td>
               <td>
                 <div class="action-buttons">
                   <a th:href="@{/admin/bookings/edit/{id}(id=${booking.id})}" class="action-btn btn-outline">Edit</a>
-                  <a th:href="@{/admin/bookings/cancel/{id}(id=${booking.id})}"
-                     class="action-btn btn-warning"
-                     th:if="${booking.status != 'Cancelled'}"
-                     onclick="return confirm('Are you sure you want to cancel this booking?')">Cancel</a>
-                  <a th:href="@{/admin/bookings/delete/{id}(id=${booking.id})}"
-                     class="action-btn btn-danger"
-                     onclick="return confirm('Are you sure you want to delete this booking?')">Delete</a>
+                  <a th:href="@{/admin/bookings/cancel/{id}(id=${booking.id})}" class="action-btn btn-warning"
+                    th:if="${booking.status != 'Cancelled'}"
+                    onclick="return confirm('Are you sure you want to cancel this booking?')">Cancel</a>
+                  <a th:href="@{/admin/bookings/delete/{id}(id=${booking.id})}" class="action-btn btn-danger"
+                    onclick="return confirm('Are you sure you want to delete this booking?')">Delete</a>
                 </div>
               </td>
             </tr>
@@ -85,4 +84,5 @@
     </section>
   </main>
 </body>
+
 </html>

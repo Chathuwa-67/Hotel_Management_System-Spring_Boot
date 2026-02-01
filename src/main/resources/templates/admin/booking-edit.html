@@ -1,130 +1,103 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit Booking - Hotel ALAKAMANDAWA Admin</title>
-    <link rel="stylesheet" th:href="@{/css/admin-booking-edit.css}" />
-  </head>
-  <body>
-    <header class="header">
-      <div class="header-inner">
-        <a href="/admin/dashboard" class="logo">Hotel ALAKAMANDAWA Admin</a>
-        <nav class="nav">
-          <a href="/admin/dashboard" class="nav-link">Dashboard</a>
-          <a href="/admin/rooms" class="nav-link">Rooms</a>
-          <a href="/admin/bookings" class="nav-link active">Bookings</a>
-          <a href="/admin/guests" class="nav-link">Guests</a>
-          <a href="/admin/logout" class="nav-btn">Logout</a>
-        </nav>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Booking - Hotel ALAKAMANDAWA Admin</title>
+  <link rel="stylesheet" th:href="@{/css/admin-booking-edit.css}" />
+</head>
+
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="/admin/dashboard" class="logo">Hotel ALAKAMANDAWA Admin</a>
+      <nav class="nav">
+        <a href="/admin/dashboard" class="nav-link">Dashboard</a>
+        <a href="/admin/rooms" class="nav-link">Rooms</a>
+        <a href="/admin/bookings" class="nav-link active">Bookings</a>
+        <a href="/admin/guests" class="nav-link">Guests</a>
+        <a href="/admin/logout" class="nav-btn">Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-heading">
+      <div>
+        <p class="eyebrow">Operations</p>
+        <h1>Edit Booking</h1>
+        <p class="muted">Update booking details and status.</p>
       </div>
-    </header>
+      <a href="/admin/bookings" class="btn outline">← Back to Bookings</a>
+    </div>
 
-    <main class="container">
-      <div class="page-heading">
-        <div>
-          <p class="eyebrow">Operations</p>
-          <h1>Edit Booking</h1>
-          <p class="muted">Update booking details and status.</p>
+    <section class="card">
+      <div class="booking-summary">
+        <h3>Current Booking Information</h3>
+        <div class="summary-grid">
+          <div class="summary-item">
+            <span>Booking ID</span>
+            <strong th:text="${booking.id}">12345</strong>
+          </div>
+          <div class="summary-item">
+            <span>Guest Name</span>
+            <strong th:text="${booking.guest.name}">John Doe</strong>
+          </div>
+          <div class="summary-item">
+            <span>Guest Phone</span>
+            <strong th:text="${booking.guest.phone}">0771234567</strong>
+          </div>
         </div>
-        <a href="/admin/bookings" class="btn outline">← Back to Bookings</a>
       </div>
 
-      <section class="card">
-        <div class="booking-summary">
-          <h3>Current Booking Information</h3>
-          <div class="summary-grid">
-            <div class="summary-item">
-              <span>Booking ID</span>
-              <strong th:text="${booking.id}">12345</strong>
-            </div>
-            <div class="summary-item">
-              <span>Guest Name</span>
-              <strong th:text="${booking.guest.name}">John Doe</strong>
-            </div>
-            <div class="summary-item">
-              <span>Guest Phone</span>
-              <strong th:text="${booking.guest.phone}">0771234567</strong>
-            </div>
+      <form th:action="@{/admin/bookings/update/{id}(id=${booking.id})}" method="post" th:object="${booking}"
+        class="form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="roomId">Room *</label>
+            <select id="roomId" name="roomId" class="form-control" required>
+              <option th:each="room : ${rooms}" th:value="${room.id}"
+                th:text="'Room ' + ${room.roomNumber} + ' - ' + ${room.roomType} + ' (LKR ' + ${#numbers.formatDecimal(room.pricePerNight, 1, 2)} + ')'"
+                th:selected="${room.id == booking.room.id}">
+                Room 101 - Deluxe
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="checkInDate">Check-in Date *</label>
+            <input type="date" id="checkInDate" th:field="*{checkInDate}" class="form-control" required />
+          </div>
+
+          <div class="form-group">
+            <label for="checkOutDate">Check-out Date *</label>
+            <input type="date" id="checkOutDate" th:field="*{checkOutDate}" class="form-control" required />
+          </div>
+
+          <div class="form-group">
+            <label for="numberOfGuests">Number of Guests *</label>
+            <input type="number" id="numberOfGuests" th:field="*{numberOfGuests}" class="form-control" min="1"
+              required />
+          </div>
+
+          <div class="form-group">
+            <label for="status">Status *</label>
+            <select id="status" th:field="*{status}" class="form-control" required>
+              <option value="Pending">Pending</option>
+              <option value="Confirmed">Confirmed</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
           </div>
         </div>
 
-        <form
-          th:action="@{/admin/bookings/update/{id}(id=${booking.id})}"
-          method="post"
-          th:object="${booking}"
-          class="form"
-        >
-          <div class="form-grid">
-            <div class="form-group">
-              <label for="roomId">Room *</label>
-              <select id="roomId" name="roomId" class="form-control" required>
-                <option
-                  th:each="room : ${rooms}"
-                  th:value="${room.id}"
-                  th:text="'Room ' + ${room.roomNumber} + ' - ' + ${room.roomType} + ' (LKR ' + ${#numbers.formatDecimal(room.pricePerNight, 1, 2)} + ')'"
-                  th:selected="${room.id == booking.room.id}"
-                >
-                  Room 101 - Deluxe
-                </option>
-              </select>
-            </div>
+        <div class="actions">
+          <button type="submit" class="btn primary">Update Booking</button>
+          <a href="/admin/bookings" class="btn ghost">Cancel</a>
+        </div>
+      </form>
+    </section>
+  </main>
+</body>
 
-            <div class="form-group">
-              <label for="checkInDate">Check-in Date *</label>
-              <input
-                type="date"
-                id="checkInDate"
-                th:field="*{checkInDate}"
-                class="form-control"
-                required
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="checkOutDate">Check-out Date *</label>
-              <input
-                type="date"
-                id="checkOutDate"
-                th:field="*{checkOutDate}"
-                class="form-control"
-                required
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="numberOfGuests">Number of Guests *</label>
-              <input
-                type="number"
-                id="numberOfGuests"
-                th:field="*{numberOfGuests}"
-                class="form-control"
-                min="1"
-                required
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="status">Status *</label>
-              <select
-                id="status"
-                th:field="*{status}"
-                class="form-control"
-                required
-              >
-                <option value="Pending">Pending</option>
-                <option value="Confirmed">Confirmed</option>
-                <option value="Cancelled">Cancelled</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="actions">
-            <button type="submit" class="btn primary">Update Booking</button>
-            <a href="/admin/bookings" class="btn ghost">Cancel</a>
-          </div>
-        </form>
-      </section>
-    </main>
-  </body>
 </html>
