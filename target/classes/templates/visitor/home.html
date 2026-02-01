@@ -1,83 +1,82 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel ALAKAMANDAWA</title>
     <link rel="stylesheet" th:href="@{/css/Home.css}">
 </head>
+
 <body>
 
-<!-- HEADER -->
-<header class="header">
-    <div class="header-inner">
-        <a href="#" class="logo">Hotel ALAKAMANDAWA</a>
-        <nav class="nav">
-            <a href="/admin/login" class="nav-btn">Admin Login</a>
-        </nav>
-    </div>
-</header>
+    <header class="header">
+        <div class="header-inner">
+            <a href="#" class="logo">Hotel ALAKAMANDAWA</a>
+            <nav class="nav">
+                <a href="/admin/login" class="nav-btn">Admin Login</a>
+            </nav>
+        </div>
+    </header>
 
-<!-- HERO -->
-<section class="hero">
-    <div class="hero-content">
-        <h1>Luxury You Can Feel</h1>
-        <p>Premium rooms designed for comfort and elegance</p>
-    </div>
-</section>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Luxury You Can Feel</h1>
+            <p>Premium rooms designed for comfort and elegance</p>
+        </div>
+    </section>
 
-<!-- MAIN -->
-<main class="container">
-    <h2 class="section-title">Available Rooms</h2>
+    <main class="container">
+        <h2 class="section-title">Available Rooms</h2>
 
-    <div class="rooms">
-        <div class="room-card" th:each="room : ${rooms}">
-            <div class="room-image">
-                <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85" alt="Hotel Room">
-                <span class="status-pill" th:text="${room.status}">Available</span>
-            </div>
-
-            <div class="room-body">
-                <span class="room-no" th:text="'Room ' + ${room.roomNumber}">Room 101</span>
-
-                <h3 th:text="${room.roomType}">Deluxe Suite</h3>
-
-                <div class="room-meta">
-                    <span th:text="${room.capacity} + ' Guests'">2 Guests</span>
-                    <span th:text="'Floor ' + ${room.floor}">Floor 3</span>
+        <div class="rooms">
+            <div class="room-card" th:each="room : ${rooms}">
+                <div class="room-image">
+                    <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85" alt="Hotel Room">
+                    <span class="status-pill" th:text="${room.status}">Available</span>
                 </div>
 
-                <p class="room-desc" th:text="${room.description}">
-                    Spacious room with modern luxury interiors
-                </p>
+                <div class="room-body">
+                    <span class="room-no" th:text="'Room ' + ${room.roomNumber}">Room 101</span>
 
-                <div class="room-footer">
-                    <div class="price">
-                        <strong th:text="'LKR ' + ${#numbers.formatDecimal(room.pricePerNight, 1, 2)}">
-                            LKR 15,000.00
-                        </strong>
-                        <span>/ night</span>
+                    <h3 th:text="${room.roomType}">Deluxe Suite</h3>
+
+                    <div class="room-meta">
+                        <span th:text="${room.capacity} + ' Guests'">2 Guests</span>
+                        <span th:text="'Floor ' + ${room.floor}">Floor 3</span>
                     </div>
 
-                    <a th:href="@{/book/{id}(id=${room.id})}" class="book-btn">
-                        Book Now
-                    </a>
+                    <p class="room-desc" th:text="${room.description}">
+                        Spacious room with modern luxury interiors
+                    </p>
+
+                    <div class="room-footer">
+                        <div class="price">
+                            <strong th:text="'LKR ' + ${#numbers.formatDecimal(room.pricePerNight, 1, 2)}">
+                                LKR 15,000.00
+                            </strong>
+                            <span>/ night</span>
+                        </div>
+
+                        <a th:href="@{/book/{id}(id=${room.id})}" class="book-btn">
+                            Book Now
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div th:if="${#lists.isEmpty(rooms)}" class="empty">
-        <p>No rooms available at the moment.</p>
-    </div>
-</main>
+        <div th:if="${#lists.isEmpty(rooms)}" class="empty">
+            <p>No rooms available at the moment.</p>
+        </div>
+    </main>
 
-<!-- FOOTER -->
-<footer class="footer">
-    <div class="footer-inner">
-        <p>© 2026 Hotel ALAKAMANADAWA</p>
-    </div>
-</footer>
+    <footer class="footer">
+        <div class="footer-inner">
+            <p>© 2026 Hotel ALAKAMANADAWA</p>
+        </div>
+    </footer>
 
 </body>
+
 </html>
