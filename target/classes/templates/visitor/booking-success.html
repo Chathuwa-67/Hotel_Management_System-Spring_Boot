@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking Confirmed - Hotel Paradise</title>
     <link rel="stylesheet" th:href="@{/css/booking-success.css}">
 </head>
+
 <body>
-	<header class="header">
-	    <div class="header-inner">
-	        <a href="/" class="logo">Hotel ALAKAMANDAWA</a>
-	        <nav class="nav">
-	            <a href="/" class="nav-btn">Home</a>
-	            <a href="/admin/login" class="nav-btn">Admin Login</a>
-	        </nav>
-	    </div>
-	</header>
+    <header class="header">
+        <div class="header-inner">
+            <a href="/" class="logo">Hotel ALAKAMANDAWA</a>
+            <nav class="nav">
+                <a href="/" class="nav-btn">Home</a>
+                <a href="/admin/login" class="nav-btn">Admin Login</a>
+            </nav>
+        </div>
+    </header>
 
     <div class="container">
         <div style="max-width: 700px; margin: 50px auto;">
@@ -58,8 +60,8 @@
                     </div>
                     <div class="summary-item">
                         <span>Total Amount:</span>
-                        <span th:text="'LKR ' + ${#numbers.formatDecimal(booking.totalPrice, 1, 2)}" 
-                              style="color: #667eea; font-weight: bold;">LKR 60,000.00</span>
+                        <span th:text="'LKR ' + ${#numbers.formatDecimal(booking.totalPrice, 1, 2)}"
+                            style="color: #667eea; font-weight: bold;">LKR 60,000.00</span>
                     </div>
                 </div>
 
@@ -82,10 +84,11 @@
 
 
     </div>
-	<footer class="footer">
-	    <div class="footer-inner">
-	        <p>© 2026 Hotel ALAKAMANADAWA</p>
-	    </div>
-	</footer>
+    <footer class="footer">
+        <div class="footer-inner">
+            <p>© 2026 Hotel ALAKAMANADAWA</p>
+        </div>
+    </footer>
 </body>
+
 </html>
