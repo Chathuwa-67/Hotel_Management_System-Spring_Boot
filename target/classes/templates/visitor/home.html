@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Paradise - Home</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="/" class="logo">🏨 Hotel Paradise</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/admin/login">Admin Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="hero">
+            <h1>Welcome to Hotel Paradise</h1>
+            <p>Experience luxury and comfort in the heart of the city</p>
+            <p style="color: #667eea; font-size: 18px;">🌟 Book your perfect room today!</p>
+        </div>
+
+        <h2 class="page-title">Available Rooms</h2>
+
+        <div class="rooms-grid">
+            <div class="room-card" th:each="room : ${rooms}">
+                <div class="room-image">
+                    🛏️
+                </div>
+                <div class="room-details">
+                    <div class="room-header">
+                        <span class="room-number" th:text="'Room ' + ${room.roomNumber}">Room 101</span>
+                        <span class="status-badge status-available" th:text="${room.status}">Available</span>
+                    </div>
+                    <div class="room-type" th:text="${room.roomType}">Deluxe Suite</div>
+                    <div class="room-info">
+                        <span>👥 <span th:text="${room.capacity} + ' Guests'">2 Guests</span></span>
+                        <span>🏢 <span th:text="'Floor ' + ${room.floor}">Floor 3</span></span>
+                    </div>
+                    <p th:text="${room.description}" style="color: #666; margin: 10px 0;">Spacious room with modern amenities</p>
+                    <div class="room-price">
+                        <span th:text="'LKR ' + ${#numbers.formatDecimal(room.pricePerNight, 1, 2)}">LKR 15,000.00</span>
+                        <span>/night</span>
+                    </div>
+                    <a th:href="@{/book/{id}(id=${room.id})}" class="btn btn-primary" style="width: 100%;">Book Now</a>
+                </div>
+            </div>
+        </div>
+
+        <div th:if="${#lists.isEmpty(rooms)}" style="text-align: center; padding: 60px 20px;">
+            <div class="card">
+                <h2 style="color: #667eea; margin-bottom: 15px;">😔 No Rooms Available</h2>
+                <p style="color: #666; font-size: 18px;">All rooms are currently booked. Please check back later!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

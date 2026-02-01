@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Hotel Paradise</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="/admin/dashboard" class="logo">🏨 Hotel Paradise Admin</a>
+            <ul class="nav-links">
+                <li><a href="/admin/dashboard">Dashboard</a></li>
+                <li><a href="/admin/rooms">Rooms</a></li>
+                <li><a href="/admin/bookings">Bookings</a></li>
+                <li><a href="/admin/guests">Guests</a></li>
+                <li><a href="/admin/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">Admin Dashboard</h1>
+
+        <div class="dashboard-grid">
+            <div class="dashboard-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                <h2>🛏️</h2>
+                <p style="color: white; margin-top: 10px;">Manage Rooms</p>
+                <a href="/admin/rooms" class="btn btn-primary" style="margin-top: 20px; background: white; color: #667eea;">
+                    View Rooms
+                </a>
+            </div>
+
+            <div class="dashboard-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
+                <h2>📅</h2>
+                <p style="color: white; margin-top: 10px;">Manage Bookings</p>
+                <a href="/admin/bookings" class="btn btn-primary" style="margin-top: 20px; background: white; color: #f5576c;">
+                    View Bookings
+                </a>
+            </div>
+
+            <div class="dashboard-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white;">
+                <h2>👥</h2>
+                <p style="color: white; margin-top: 10px;">Manage Guests</p>
+                <a href="/admin/guests" class="btn btn-primary" style="margin-top: 20px; background: white; color: #4facfe;">
+                    View Guests
+                </a>
+            </div>
+
+            <div class="dashboard-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: white;">
+                <h2>🏠</h2>
+                <p style="color: white; margin-top: 10px;">Visitor Site</p>
+                <a href="/" class="btn btn-primary" style="margin-top: 20px; background: white; color: #43e97b;">
+                    Go to Site
+                </a>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 40px;">
+            <h2 style="color: #667eea; margin-bottom: 20px;">Quick Actions</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                <a href="/admin/rooms/add" class="btn btn-success">➕ Add New Room</a>
+                <a href="/admin/bookings" class="btn btn-primary">📊 View All Bookings</a>
+                <a href="/admin/guests" class="btn btn-warning">👤 View All Guests</a>
+                <a href="/admin/logout" class="btn btn-danger">🚪 Logout</a>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 30px; background: #f8f9fa;">
+            <h3 style="color: #667eea; margin-bottom: 15px;">💡 System Information</h3>
+            <p style="color: #666; line-height: 1.8;">
+                <strong>Hotel Management System</strong><br>
+                Version 1.0<br>
+                Logged in as: <strong>Administrator</strong><br>
+                Access Level: <strong>Full Access</strong>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

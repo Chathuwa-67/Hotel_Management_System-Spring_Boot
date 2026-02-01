@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Rooms - Hotel Paradise</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="/admin/dashboard" class="logo">🏨 Hotel Paradise Admin</a>
+            <ul class="nav-links">
+                <li><a href="/admin/dashboard">Dashboard</a></li>
+                <li><a href="/admin/rooms">Rooms</a></li>
+                <li><a href="/admin/bookings">Bookings</a></li>
+                <li><a href="/admin/guests">Guests</a></li>
+                <li><a href="/admin/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+            <h1 class="page-title" style="margin: 0;">Room Management</h1>
+            <a href="/admin/rooms/add" class="btn btn-success">➕ Add New Room</a>
+        </div>
+
+        <div class="card">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Room Number</th>
+                        <th>Type</th>
+                        <th>Floor</th>
+                        <th>Capacity</th>
+                        <th>Price/Night (LKR)</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="room : ${rooms}">
+                        <td th:text="${room.roomNumber}">101</td>
+                        <td th:text="${room.roomType}">Deluxe</td>
+                        <td th:text="${room.floor}">1</td>
+                        <td th:text="${room.capacity}">2</td>
+                        <td th:text="${#numbers.formatDecimal(room.pricePerNight, 1, 2)}">15,000.00</td>
+                        <td>
+                            <span class="status-badge" 
+                                  th:classappend="${room.status == 'Available'} ? 'status-available' : 'status-booked'"
+                                  th:text="${room.status}">
+                                Available
+                            </span>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <a th:href="@{/admin/rooms/edit/{id}(id=${room.id})}" 
+                                   class="action-btn btn-primary">Edit</a>
+                                <a th:href="@{/admin/rooms/delete/{id}(id=${room.id})}" 
+                                   class="action-btn btn-danger"
+                                   onclick="return confirm('Are you sure you want to delete this room?')">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div th:if="${#lists.isEmpty(rooms)}" style="text-align: center; padding: 40px; color: #999;">
+                <p style="font-size: 18px;">No rooms found. Click "Add New Room" to create one.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

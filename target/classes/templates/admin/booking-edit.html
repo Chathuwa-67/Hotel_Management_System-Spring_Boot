@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Booking - Hotel Paradise</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="/admin/dashboard" class="logo">🏨 Hotel Paradise Admin</a>
+            <ul class="nav-links">
+                <li><a href="/admin/dashboard">Dashboard</a></li>
+                <li><a href="/admin/rooms">Rooms</a></li>
+                <li><a href="/admin/bookings">Bookings</a></li>
+                <li><a href="/admin/guests">Guests</a></li>
+                <li><a href="/admin/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <a href="/admin/bookings" class="back-button">← Back to Bookings</a>
+        
+        <h1 class="page-title">Edit Booking</h1>
+
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div class="card">
+                <form th:action="@{/admin/bookings/update/{id}(id=${booking.id})}" 
+                      method="post" th:object="${booking}">
+                    
+                    <div class="booking-summary">
+                        <h3>Current Booking Information</h3>
+                        <div class="summary-item">
+                            <span>Booking ID:</span>
+                            <span th:text="${booking.id}">12345</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Guest Name:</span>
+                            <span th:text="${booking.guest.name}">John Doe</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Guest Phone:</span>
+                            <span th:text="${booking.guest.phone}">0771234567</span>
+                        </div>
+                    </div>
+
+                    <h3 style="color: #667eea; margin: 25px 0 20px 0;">Update Booking Details</h3>
+
+                    <div class="form-group">
+                        <label for="roomId">Room *</label>
+                        <select id="roomId" name="roomId" class="form-control" required>
+                            <option th:each="room : ${rooms}" 
+                                    th:value="${room.id}" 
+                                    th:text="'Room ' + ${room.roomNumber} + ' - ' + ${room.roomType} + ' (LKR ' + ${#numbers.formatDecimal(room.pricePerNight, 1, 2)} + ')'"
+                                    th:selected="${room.id == booking.room.id}">
+                                Room 101 - Deluxe
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="checkInDate">Check-in Date *</label>
+                        <input type="date" id="checkInDate" th:field="*{checkInDate}" 
+                               class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="checkOutDate">Check-out Date *</label>
+                        <input type="date" id="checkOutDate" th:field="*{checkOutDate}" 
+                               class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="numberOfGuests">Number of Guests *</label>
+                        <input type="number" id="numberOfGuests" th:field="*{numberOfGuests}" 
+                               class="form-control" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status">Status *</label>
+                        <select id="status" th:field="*{status}" class="form-control" required>
+                            <option value="Pending">Pending</option>
+                            <option value="Confirmed">Confirmed</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                    </div>
+
+                    <div style="display: flex; gap: 15px; margin-top: 30px;">
+                        <button type="submit" class="btn btn-success" style="flex: 1;">Update Booking</button>
+                        <a href="/admin/bookings" class="btn btn-secondary" style="flex: 1;">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
