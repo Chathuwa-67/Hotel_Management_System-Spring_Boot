@@ -1,4 +1,4 @@
-/* ===== VARIABLES ===== */
+/*  VARIABLES */
 :root {
   --primary: #1f4bff;
   --primary-dark: #0d2aa8;
@@ -13,7 +13,7 @@
   --alert-error-text: #0d0d0d;
 }
 
-/* ===== BASE ===== */
+/* BASE */
 * {
   margin: 0;
   padding: 0;
@@ -30,14 +30,14 @@ body {
   align-items: center;
 }
 
-/* ===== LOGIN CONTAINER ===== */
+/* LOGIN CONTAINER */
 .login-container {
   width: 100%;
   max-width: 400px;
   padding: 20px;
 }
 
-/* ===== LOGIN CARD ===== */
+/* LOGIN CARD */
 .login-card {
   background: var(--card);
   padding: 30px 25px;
@@ -51,7 +51,7 @@ body {
   box-shadow: 0 22px 50px rgba(0, 0, 0, 0.1);
 }
 
-/* ===== LOGIN HEADER ===== */
+/* LOGIN HEADER */
 .login-header h1 {
   font-size: 24px;
   text-align: center;
@@ -65,7 +65,7 @@ body {
   font-size: 16px;
 }
 
-/* ===== ALERT ERROR ===== */
+/* ALERT ERROR */
 .alert {
   padding: 12px 15px;
   border-radius: var(--radius);
@@ -79,7 +79,7 @@ body {
   border: 1px solid rgba(31, 75, 255, 0.18);
 }
 
-/* ===== FORM ===== */
+/* FORM */
 .form-group {
   margin-bottom: 18px;
 }
@@ -106,7 +106,7 @@ input.form-control:focus {
   box-shadow: 0 0 10px var(--input-focus);
 }
 
-/* ===== BUTTON ===== */
+/* BUTTON */
 .btn {
   display: inline-flex;
   justify-content: center;
@@ -132,7 +132,7 @@ input.form-control:focus {
   box-shadow: 0 15px 36px rgba(0, 0, 0, 0.2);
 }
 
-/* ===== BACK TO HOME LINK ===== */
+/* BACK TO HOME LINK */
 .login-card a {
   color: var(--primary-dark);
   text-decoration: none;
@@ -144,7 +144,7 @@ input.form-control:focus {
   color: var(--primary);
 }
 
-/* ===== DEMO CREDENTIALS BOX ===== */
+/* DEMO CREDENTIALS BOX */
 .login-card div[style*="background: #e3f2fd"] {
   background: rgba(31, 75, 255, 0.08);
   padding: 12px 15px;

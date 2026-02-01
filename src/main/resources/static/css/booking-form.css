@@ -1,4 +1,4 @@
-/* ===== VARIABLES ===== */
+/* VARIABLES */
 :root {
     --primary: #4f46e5;
     --primary-dark: #4338ca;
@@ -9,7 +9,7 @@
     --radius: 22px;
 }
 
-/* ===== BASE ===== */
+/* BASE */
 * {
     margin: 0;
     padding: 0;
@@ -22,7 +22,7 @@ body {
     color: var(--text);
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 .header {
     position: sticky;
     top: 0;
@@ -84,7 +84,7 @@ body {
     box-shadow: 0 14px 36px rgba(79,70,229,0.45);
 }
 
-/* ===== CONTAINER ===== */
+/* CONTAINER */
 .container {
     max-width: 1200px;
     margin: 40px auto;
@@ -109,14 +109,14 @@ body {
     text-decoration: underline;
 }
 
-/* ===== GRID ===== */
+/* GRID */
 .rooms-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 25px;
 }
 
-/* ===== CARD STYLES ===== */
+/* CARD STYLES */
 .card {
     background: var(--card);
     padding: 25px;
@@ -130,7 +130,7 @@ body {
     box-shadow: 0 35px 80px rgba(0,0,0,0.15);
 }
 
-/* ===== BOOKING SUMMARY CARD ===== */
+/* BOOKING SUMMARY CARD */
 .booking-summary {
     position: relative;
 }
@@ -171,7 +171,7 @@ body {
     color: var(--text);
 }
 
-/* ===== BOOKING FORM CARD ===== */
+/* BOOKING FORM CARD */
 .booking-form {
     position: relative;
     padding: 30px;
@@ -237,7 +237,7 @@ input:focus, textarea:focus {
     box-shadow: 0 0 10px rgba(79,70,229,0.2);
 }
 
-/* ===== BUTTONS ===== */
+/* BUTTONS */
 .button-group {
     display: flex;
     gap: 15px;
@@ -282,7 +282,7 @@ input:focus, textarea:focus {
     background: #e2e8f0;
 }
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 .footer {
     background: var(--card);
     border-top: 1px solid rgba(0,0,0,0.06);
@@ -297,7 +297,7 @@ input:focus, textarea:focus {
     color: var(--muted);
 }
 
-/* ===== TOOLTIP INFO ===== */
+/* TOOLTIP INFO */
 .tooltip {
     cursor: pointer;
     font-size: 14px;

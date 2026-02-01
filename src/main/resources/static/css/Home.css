@@ -20,7 +20,7 @@ body {
     color: var(--text);
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 .header {
     position: sticky;
     top: 0;
@@ -79,7 +79,7 @@ body {
     box-shadow: 0 14px 36px rgba(79,70,229,0.45);
 }
 
-/* ===== HERO ===== */
+/* HERO */
 .hero {
     height: 70vh;
     background:
@@ -104,7 +104,7 @@ body {
     opacity: 0.9;
 }
 
-/* ===== LAYOUT ===== */
+/* LAYOUT */
 .container {
     max-width: 1200px;
     margin: auto;
@@ -117,7 +117,7 @@ body {
     margin-bottom: 60px;
 }
 
-/* ===== ROOMS ===== */
+/* ROOMS */
 .rooms {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -225,7 +225,7 @@ body {
     margin-top: 80px;
 }
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 .footer {
     background: white;
     border-top: 1px solid rgba(0,0,0,0.06);

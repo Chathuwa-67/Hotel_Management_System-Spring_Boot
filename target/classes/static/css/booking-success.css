@@ -1,4 +1,4 @@
-/* ===== VARIABLES ===== */
+/* VARIABLES */
 :root {
     --primary: #4f46e5;
     --primary-dark: #4338ca;
@@ -12,7 +12,7 @@
     --radius: 22px;
 }
 
-/* ===== BASE ===== */
+/*  BASE */
 * {
     margin: 0;
     padding: 0;
@@ -25,7 +25,7 @@ body {
     color: var(--text);
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 .header {
     position: sticky;
     top: 0;
@@ -71,14 +71,14 @@ body {
     box-shadow: 0 10px 25px rgba(79,70,229,0.35);
 }
 
-/* ===== CONTAINER ===== */
+/* CONTAINER */
 .container {
     max-width: 1200px;
     margin: 40px auto;
     padding: 0 24px;
 }
 
-/* ===== CARD ===== */
+/* CARD */
 .card {
     background: var(--card);
     padding: 50px 30px;
@@ -93,7 +93,7 @@ body {
     box-shadow: 0 35px 80px rgba(0,0,0,0.15);
 }
 
-/* ===== BOOKING SUMMARY ===== */
+/* BOOKING SUMMARY */
 .booking-summary {
     text-align: left;
     margin: 30px 0;
@@ -124,7 +124,7 @@ body {
     color: var(--text);
 }
 
-/* ===== WARNING / INFO BOX ===== */
+/* WARNING / INFO BOX */
 div[style*="background: #fff3cd"] {
     background: var(--warning-bg);
     color: var(--warning-text);
@@ -134,7 +134,7 @@ div[style*="background: #fff3cd"] {
     text-align: left;
 }
 
-/* ===== BUTTONS ===== */
+/* BUTTONS */
 .btn {
     padding: 12px 0;
     border-radius: 999px;
@@ -171,7 +171,7 @@ div[style*="background: #fff3cd"] {
     background: #ccc;
 }
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 .footer {
     background: var(--card);
     border-top: 1px solid rgba(0,0,0,0.06);
