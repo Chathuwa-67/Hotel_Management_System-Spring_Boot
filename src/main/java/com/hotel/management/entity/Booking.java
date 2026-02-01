@@ -34,7 +34,7 @@ public class Booking {
 	private double totalPrice;
 	
 	@Column(name = "status")
-	private String status; // Confirmed, Pending, Cancelled
+	private String status; 
 	
 	@Column(name = "booking_date")
 	private LocalDate bookingDate;

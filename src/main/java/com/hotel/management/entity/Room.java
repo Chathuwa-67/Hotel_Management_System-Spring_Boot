@@ -15,7 +15,7 @@ public class Room {
 	private String roomNumber;
 	
 	@Column(name = "room_type", nullable = false)
-	private String roomType; // Single, Double, Suite
+	private String roomType; 
 	
 	@Column(name = "price_per_night", nullable = false)
 	private double pricePerNight;
@@ -27,7 +27,7 @@ public class Room {
 	private int capacity;
 	
 	@Column(name = "status")
-	private String status; // Available, Booked
+	private String status; 
 	
 	@Column(name = "description")
 	private String description;
