@@ -1,0 +1,306 @@
+/* ===== VARIABLES ===== */
+:root {
+    --primary: #4f46e5;
+    --primary-dark: #4338ca;
+    --bg: #f5f7fb;
+    --card: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --radius: 22px;
+}
+
+/* ===== BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* ===== HEADER ===== */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.header-inner {
+    max-width: 1200px;
+    margin: auto;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+}
+
+.nav {
+    display: flex;
+    gap: 14px;
+}
+
+.nav-link {
+    padding: 8px 14px;
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--muted);
+    font-weight: 500;
+    transition: background 0.4s ease, color 0.4s ease;
+}
+
+.nav-link.active,
+.nav-link:hover {
+    background: #eef2ff;
+    color: var(--primary-dark);
+}
+
+.nav-btn {
+    padding: 10px 24px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #fff;
+    font-weight: 500;
+    box-shadow: 0 8px 20px rgba(79,70,229,0.35);
+    text-decoration: none;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 36px rgba(79,70,229,0.45);
+}
+
+/* ===== CONTAINER ===== */
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 24px;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 25px;
+    color: var(--text);
+}
+
+.back-button {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: var(--muted);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.back-button:hover {
+    text-decoration: underline;
+}
+
+/* ===== GRID ===== */
+.rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+/* ===== CARD STYLES ===== */
+.card {
+    background: var(--card);
+    padding: 25px;
+    border-radius: var(--radius);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    transition: transform 0.6s ease, box-shadow 0.6s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 35px 80px rgba(0,0,0,0.15);
+}
+
+/* ===== BOOKING SUMMARY CARD ===== */
+.booking-summary {
+    position: relative;
+}
+
+.booking-summary::before {
+    content: "";
+    display: block;
+    height: 6px;
+    width: 50px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+}
+
+.booking-summary h3 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: var(--text);
+    border-bottom: 1px solid #eef2ff;
+    padding-bottom: 8px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    font-size: 16px;
+    color: var(--text);
+}
+
+.summary-item span:first-child {
+    font-weight: 500;
+    color: var(--muted);
+}
+
+.summary-item span:last-child {
+    font-weight: 600;
+    color: var(--text);
+}
+
+/* ===== BOOKING FORM CARD ===== */
+.booking-form {
+    position: relative;
+    padding: 30px;
+    border-radius: var(--radius);
+    background: var(--card);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.12);
+    transition: transform 0.6s ease, box-shadow 0.6s ease;
+}
+
+.booking-form::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 6px;
+    width: 100%;
+    border-top-left-radius: var(--radius);
+    border-top-right-radius: var(--radius);
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+}
+
+.booking-form h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--primary-dark);
+    position: relative;
+}
+
+.booking-form h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 50px;
+    height: 3px;
+    border-radius: 2px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: var(--text);
+}
+
+input, textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 16px;
+    border: 1px solid #ddd;
+    transition: 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 10px rgba(79,70,229,0.2);
+}
+
+/* ===== BUTTONS ===== */
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.btn {
+    flex: 1;
+    padding: 12px 0;
+    border-radius: 999px;
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: scale(1.08);
+    box-shadow: 0 20px 50px rgba(79,70,229,0.4);
+}
+
+.btn-secondary {
+    background: #f3f4f6;
+    color: var(--text);
+    border: none;
+}
+
+.btn-secondary:hover {
+    background: #e2e8f0;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background: var(--card);
+    border-top: 1px solid rgba(0,0,0,0.06);
+    margin-top: 60px;
+}
+
+.footer-inner {
+    max-width: 1200px;
+    margin: auto;
+    padding: 28px;
+    text-align: center;
+    color: var(--muted);
+}
+
+/* ===== TOOLTIP INFO ===== */
+.tooltip {
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--primary-dark);
+    margin-left: 5px;
+}
