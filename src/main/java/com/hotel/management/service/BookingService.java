@@ -29,7 +29,6 @@ public class BookingService {
 		booking.calculateTotalPrice();
 		bookingRepository.save(booking);
 		
-		// Update room status to Booked
 		Room room = booking.getRoom();
 		if (room != null) {
 			room.setStatus("Booked");
@@ -40,13 +39,11 @@ public class BookingService {
 	public Booking updateBooking(int id, Booking updatedBooking) {
 		Booking booking = bookingRepository.findById(id).orElse(null);
 		if (booking != null) {
-			// If room is changed, update old room status
 			if (booking.getRoom().getId() != updatedBooking.getRoom().getId()) {
 				Room oldRoom = booking.getRoom();
 				oldRoom.setStatus("Available");
 				roomRepository.save(oldRoom);
 				
-				// Update new room status
 				Room newRoom = updatedBooking.getRoom();
 				newRoom.setStatus("Booked");
 				roomRepository.save(newRoom);
@@ -67,7 +64,6 @@ public class BookingService {
 	public void deleteBooking(int id) {
 		Booking booking = bookingRepository.findById(id).orElse(null);
 		if (booking != null) {
-			// Update room status to Available
 			Room room = booking.getRoom();
 			if (room != null) {
 				room.setStatus("Available");
@@ -83,7 +79,6 @@ public class BookingService {
 			booking.setStatus("Cancelled");
 			bookingRepository.save(booking);
 			
-			// Update room status to Available
 			Room room = booking.getRoom();
 			if (room != null) {
 				room.setStatus("Available");
