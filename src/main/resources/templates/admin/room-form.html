@@ -1,95 +1,146 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title th:text="${isEdit} ? 'Edit Room' : 'Add Room'">Room Form</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-</head>
-<body>
-    <header>
-        <nav class="navbar">
-            <a href="/admin/dashboard" class="logo">🏨 Hotel Paradise Admin</a>
-            <ul class="nav-links">
-                <li><a href="/admin/dashboard">Dashboard</a></li>
-                <li><a href="/admin/rooms">Rooms</a></li>
-                <li><a href="/admin/bookings">Bookings</a></li>
-                <li><a href="/admin/guests">Guests</a></li>
-                <li><a href="/admin/logout">Logout</a></li>
-            </ul>
+    <link rel="stylesheet" th:href="@{/css/admin-room-form.css}" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-inner">
+        <a href="/admin/dashboard" class="logo">Hotel ALAKAMANDAWA Admin</a>
+        <nav class="nav">
+          <a href="/admin/dashboard" class="nav-link">Dashboard</a>
+          <a href="/admin/rooms" class="nav-link active">Rooms</a>
+          <a href="/admin/bookings" class="nav-link">Bookings</a>
+          <a href="/admin/guests" class="nav-link">Guests</a>
+          <a href="/admin/logout" class="nav-btn">Logout</a>
         </nav>
+      </div>
     </header>
 
-    <div class="container">
-        <a href="/admin/rooms" class="back-button">← Back to Rooms</a>
-        
-        <h1 class="page-title" th:text="${isEdit} ? 'Edit Room' : 'Add New Room'">Add Room</h1>
-
-        <div style="max-width: 800px; margin: 0 auto;">
-            <div class="card">
-                <form th:action="${isEdit} ? @{/admin/rooms/update/{id}(id=${room.id})} : @{/admin/rooms/add}" 
-                      method="post" th:object="${room}">
-                    
-                    <div class="form-group">
-                        <label for="roomNumber">Room Number *</label>
-                        <input type="text" id="roomNumber" th:field="*{roomNumber}" 
-                               class="form-control" placeholder="e.g., 101" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="roomType">Room Type *</label>
-                        <select id="roomType" th:field="*{roomType}" class="form-control" required>
-                            <option value="">-- Select Room Type --</option>
-                            <option value="Single">Single</option>
-                            <option value="Double">Double</option>
-                            <option value="Suite">Suite</option>
-                            <option value="Deluxe">Deluxe</option>
-                            <option value="Presidential Suite">Presidential Suite</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="floor">Floor *</label>
-                        <input type="number" id="floor" th:field="*{floor}" 
-                               class="form-control" min="1" placeholder="e.g., 3" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="capacity">Capacity (Number of Guests) *</label>
-                        <input type="number" id="capacity" th:field="*{capacity}" 
-                               class="form-control" min="1" max="10" placeholder="e.g., 2" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="pricePerNight">Price per Night (LKR) *</label>
-                        <input type="number" id="pricePerNight" th:field="*{pricePerNight}" 
-                               class="form-control" step="0.01" min="0" placeholder="e.g., 15000.00" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="status">Status *</label>
-                        <select id="status" th:field="*{status}" class="form-control" required>
-                            <option value="Available">Available</option>
-                            <option value="Booked">Booked</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="description">Description</label>
-                        <textarea id="description" th:field="*{description}" 
-                                  class="form-control" rows="4" 
-                                  placeholder="Describe the room amenities and features..."></textarea>
-                    </div>
-
-                    <div style="display: flex; gap: 15px; margin-top: 30px;">
-                        <button type="submit" class="btn btn-success" style="flex: 1;">
-                            <span th:text="${isEdit} ? 'Update Room' : 'Add Room'">Save</span>
-                        </button>
-                        <a href="/admin/rooms" class="btn btn-secondary" style="flex: 1;">Cancel</a>
-                    </div>
-                </form>
-            </div>
+    <main class="container">
+      <div class="page-heading">
+        <div>
+          <p class="eyebrow">Inventory</p>
+          <h1 th:text="${isEdit} ? 'Edit Room' : 'Add New Room'">Add Room</h1>
+          <p class="muted">Manage room details, pricing, and availability.</p>
         </div>
-    </div>
-</body>
+        <a href="/admin/rooms" class="btn outline">← Back to Rooms</a>
+      </div>
+
+      <section class="card">
+        <form
+          th:action="${isEdit} ? @{/admin/rooms/update/{id}(id=${room.id})} : @{/admin/rooms/add}"
+          method="post"
+          th:object="${room}"
+          class="form"
+        >
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="roomNumber">Room Number *</label>
+              <input
+                type="text"
+                id="roomNumber"
+                th:field="*{roomNumber}"
+                class="form-control"
+                placeholder="e.g., 101"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="roomType">Room Type *</label>
+              <select
+                id="roomType"
+                th:field="*{roomType}"
+                class="form-control"
+                required
+              >
+                <option value="">-- Select Room Type --</option>
+                <option value="Single">Single</option>
+                <option value="Double">Double</option>
+                <option value="Suite">Suite</option>
+                <option value="Deluxe">Deluxe</option>
+                <option value="Presidential Suite">Presidential Suite</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="floor">Floor *</label>
+              <input
+                type="number"
+                id="floor"
+                th:field="*{floor}"
+                class="form-control"
+                min="1"
+                placeholder="e.g., 3"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="capacity">Capacity (Number of Guests) *</label>
+              <input
+                type="number"
+                id="capacity"
+                th:field="*{capacity}"
+                class="form-control"
+                min="1"
+                max="10"
+                placeholder="e.g., 2"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="pricePerNight">Price per Night (LKR) *</label>
+              <input
+                type="number"
+                id="pricePerNight"
+                th:field="*{pricePerNight}"
+                class="form-control"
+                step="0.01"
+                min="0"
+                placeholder="e.g., 15000.00"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="status">Status *</label>
+              <select
+                id="status"
+                th:field="*{status}"
+                class="form-control"
+                required
+              >
+                <option value="Available">Available</option>
+                <option value="Booked">Booked</option>
+              </select>
+            </div>
+
+            <div class="form-group full">
+              <label for="description">Description</label>
+              <textarea
+                id="description"
+                th:field="*{description}"
+                class="form-control"
+                rows="4"
+                placeholder="Describe the room amenities and features..."
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="btn primary">
+              <span th:text="${isEdit} ? 'Update Room' : 'Add Room'">Save</span>
+            </button>
+            <a href="/admin/rooms" class="btn ghost">Cancel</a>
+          </div>
+        </form>
+      </section>
+    </main>
+  </body>
 </html>

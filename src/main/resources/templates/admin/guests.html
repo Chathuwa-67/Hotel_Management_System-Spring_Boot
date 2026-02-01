@@ -3,62 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Guests - Hotel Paradise</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Manage Guests - Hotel ALAKAMANDAWA Admin</title>
+    <link rel="stylesheet" th:href="@{/css/admin-guests.css}">
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <a href="/admin/dashboard" class="logo">🏨 Hotel Paradise Admin</a>
-            <ul class="nav-links">
-                <li><a href="/admin/dashboard">Dashboard</a></li>
-                <li><a href="/admin/rooms">Rooms</a></li>
-                <li><a href="/admin/bookings">Bookings</a></li>
-                <li><a href="/admin/guests">Guests</a></li>
-                <li><a href="/admin/logout">Logout</a></li>
-            </ul>
-        </nav>
+    <header class="header">
+        <div class="header-inner">
+            <a href="/admin/dashboard" class="logo">Hotel ALAKAMANDAWA Admin</a>
+            <nav class="nav">
+                <a href="/admin/dashboard" class="nav-link">Dashboard</a>
+                <a href="/admin/rooms" class="nav-link">Rooms</a>
+                <a href="/admin/bookings" class="nav-link">Bookings</a>
+                <a href="/admin/guests" class="nav-link active">Guests</a>
+                <a href="/admin/logout" class="nav-btn">Logout</a>
+            </nav>
+        </div>
     </header>
 
-    <div class="container">
-        <h1 class="page-title">Guest Management</h1>
-
-        <div class="card">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Phone</th>
-                        <th>Email</th>
-                        <th>Address</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="guest : ${guests}">
-                        <td th:text="${guest.id}">1</td>
-                        <td th:text="${guest.name}">John Doe</td>
-                        <td th:text="${guest.phone}">0771234567</td>
-                        <td th:text="${guest.email}">john@example.com</td>
-                        <td th:text="${guest.address}">Colombo</td>
-                        <td>
-                            <div class="action-buttons">
-                                <a th:href="@{/admin/guests/history/{id}(id=${guest.id})}" 
-                                   class="action-btn btn-primary">View History</a>
-                                <a th:href="@{/admin/guests/delete/{id}(id=${guest.id})}" 
-                                   class="action-btn btn-danger"
-                                   onclick="return confirm('Are you sure you want to delete this guest? This will also delete all their bookings!')">Delete</a>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div th:if="${#lists.isEmpty(guests)}" style="text-align: center; padding: 40px; color: #999;">
-                <p style="font-size: 18px;">No guests found.</p>
+    <main class="container">
+        <div class="page-heading">
+            <div>
+                <p class="eyebrow">Records</p>
+                <h1>Guest Management</h1>
+                <p class="muted">View guest details and booking history.</p>
             </div>
         </div>
-    </div>
+
+        <section class="card">
+            <div class="table-wrapper">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th style="width: 200px;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="guest : ${guests}">
+                            <td th:text="${guest.id}">1</td>
+                            <td th:text="${guest.name}">John Doe</td>
+                            <td th:text="${guest.phone}">0771234567</td>
+                            <td th:text="${guest.email}">john@example.com</td>
+                            <td th:text="${guest.address}">Colombo</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <a th:href="@{/admin/guests/history/{id}(id=${guest.id})}" class="action-btn btn-outline">View History</a>
+                                    <a th:href="@{/admin/guests/delete/{id}(id=${guest.id})}"
+                                       class="action-btn btn-danger"
+                                       onclick="return confirm('Are you sure you want to delete this guest? This will also delete all their bookings!')">
+                                        Delete
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div th:if="${#lists.isEmpty(guests)}" class="empty">
+                    <p>No guests found.</p>
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
